@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<arquillian xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns="http://jboss.org/schema/arquillian"
+            xsi:schemaLocation="http://jboss.org/schema/arquillian
+                                http://jboss.org/schema/arquillian/arquillian_1_0.xsd">
+
+    <!--<container qualifier="glassfish" default="true">-->
+        <!--<configuration>-->
+            <!--<property name="glassFishHome">/glassfish/runtime/weld20integration/glassfish3</property>-->
+            <!--<property name="adminHost">localhost</property>-->
+            <!--<property name="adminPort">4848</property>-->
+        <!--</configuration>-->
+    <!--</container>-->
+
+    <!--<container qualifier="glassfish-auth">-->
+        <!--<configuration>-->
+            <!--<property name="glassFishHome">/glassfish/runtime/weld20integration/glassfish3</property>-->
+            <!--<property name="adminHost">localhost</property>-->
+            <!--<property name="adminPort">4848</property>-->
+        <!--</configuration>-->
+    <!--</container>-->
+
+
+    <container qualifier="weld">
+        <configuration>
+            <!--<property name="enableConversationScope">true</property>-->
+            <property name="glassFishHome">/glassfish/runtime/trunk/glassfish4</property>
+            <property name="adminHost">localhost</property>
+            <property name="adminPort">4848</property>
+            <property name="debug">true</property>
+        </configuration>
+    </container>
+
+</arquillian>

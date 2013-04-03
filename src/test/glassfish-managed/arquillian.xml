@@ -20,6 +20,9 @@
         <!--</configuration>-->
     <!--</container>-->
 
+    <engine>
+        <property name="maxTestClassesBeforeRestart">80</property>
+    </engine>
 
     <container qualifier="weld">
         <configuration>

@@ -1,15 +1,18 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <!-- CDI TCK TestNG configuration for Weld -->
-<suite name="Weld / JBoss AS run of CDI TCK" verbose="0" configfailurepolicy="continue">
+<suite name="Weld / JBoss AS run of CDI TCK" verbose="0"
+    configfailurepolicy="continue">
 
     <listeners>
-        <listener class-name="org.jboss.cdi.tck.impl.testng.SingleTestClassMethodInterceptor"/>
-        <listener class-name="org.jboss.cdi.tck.impl.testng.ProgressLoggingTestListener"/>
+        <listener
+            class-name="org.jboss.cdi.tck.impl.testng.SingleTestClassMethodInterceptor" />
+        <listener
+            class-name="org.jboss.cdi.tck.impl.testng.ProgressLoggingTestListener" />
         <!-- The default JUnit XML reporter is disabled -->
-        <listener class-name="org.testng.reporters.SuiteHTMLReporter"/>
-        <listener class-name="org.testng.reporters.FailedReporter"/>
-        <listener class-name="org.testng.reporters.XMLReporter"/>
-        <listener class-name="org.testng.reporters.EmailableReporter"/>
+        <listener class-name="org.testng.reporters.SuiteHTMLReporter" />
+        <listener class-name="org.testng.reporters.FailedReporter" />
+        <listener class-name="org.testng.reporters.XMLReporter" />
+        <listener class-name="org.testng.reporters.EmailableReporter" />
         <listener class-name="org.testng.reporters.TestHTMLReporter" />
     </listeners>
 
@@ -19,123 +22,5 @@
             <package name="org.jboss.cdi.tck.tests.*" />
             <package name="org.jboss.cdi.tck.interceptors.tests.*" />
         </packages>
-
-        <classes>
-
-            <!-- Issues in the TCK -->
-
-            <!-- CDI-331 - either the Instance.isAmbiguous() behavior is fixed in the spec or AssertBean must not test this method within assertAvailable -->
-            <class name="org.jboss.cdi.tck.tests.alternative.selection.SelectedAlternative02Test">
-                <methods>
-                    <exclude name=".*"/>
-                </methods>
-            </class>
-            <!-- CDITCK-283 -->
-            <class name="org.jboss.cdi.tck.tests.context.request.event.jms.RequestScopeEventMessageDeliveryTest">
-                <methods>
-                    <exclude name=".*"/>
-                </methods>
-            </class>
-            <class name="org.jboss.cdi.tck.tests.context.jms.MessageDrivenBeanContextTest">
-                <methods>
-                    <exclude name=".*"/>
-                </methods>
-            </class>
-
-            <!-- Issues in Weld (the RI) -->
-            <!-- WELD-1099 -->
-            <class name="org.jboss.cdi.tck.tests.implementation.simple.resource.broken.type.ws.ResourceDefinitionWithDifferentTypeTest">
-                <methods>
-                    <exclude name="testDeployment"/>
-                </methods>
-            </class>
-            <class name="org.jboss.cdi.tck.tests.lookup.injection.non.contextual.ws.WebServiceResourceTest">
-                <methods>
-                    <exclude name="testResourceInvocation"/>
-                </methods>
-            </class>
-            <!-- WELD-1181 -->
-            <class name="org.jboss.cdi.tck.tests.lookup.injectionpoint.non.contextual.NonContextualInjectionPointTest">
-                <methods>
-                    <exclude name="testEjbInjectionPointGetBean"/>
-                </methods>
-            </class>
-            <!-- WELD-1349 -->
-            <class name="org.jboss.cdi.tck.tests.alternative.selection.SelectedAlternative01Test">
-                <methods>
-                    <exclude name=".*"/>
-                </methods>
-            </class>
-            <class name="org.jboss.cdi.tck.tests.alternative.selection.resource.ResourceAlternative04Test">
-                <methods>
-                    <exclude name=".*"/>
-                </methods>
-            </class>
-            <!-- WELD-1342 -->
-            <class name="org.jboss.cdi.tck.tests.deployment.discovery.BeanDiscoveryTest">
-                <methods>
-                    <exclude name=".*"/>
-                </methods>
-            </class>
-            <class name="org.jboss.cdi.tck.tests.deployment.discovery.enterprise.EnterpriseBeanDiscoveryTest">
-                <methods>
-                    <exclude name=".*"/>
-                </methods>
-            </class>
-
-            <!-- Issues in JBoss AS -->
-            <!-- AS7-5966 -->
-            <class name="org.jboss.cdi.tck.tests.deployment.packaging.installedLibrary.InstalledLibraryWarTest">
-                <methods>
-                    <exclude name=".*"/>
-                </methods>
-            </class>
-            <class name="org.jboss.cdi.tck.tests.deployment.packaging.installedLibrary.InstalledLibraryEarTest">
-                <methods>
-                    <exclude name=".*"/>
-                </methods>
-            </class>
-            <!-- AS7-6428 -->
-            <class name="org.jboss.cdi.tck.tests.context.session.listener.SessionContextHttpSessionListenerTest">
-                <methods>
-                    <exclude name="testSessionScopeActiveDuringHttpSessionListenerCall"/>
-                </methods>
-            </class>
-            <!-- AS7-6739 -->
-            <class name="org.jboss.cdi.tck.tests.interceptors.definition.lifecycle.enterprise.order.EnterpriseLifecycleInterceptorDefinitionTest">
-                <methods>
-                    <exclude name=".*"/>
-                </methods>
-            </class>
-            <!-- JMS tests not working on AS7, see CDITCK-315 -->
-            <class name="org.jboss.cdi.tck.tests.extensions.container.event.jms.ContainerEventTest">
-                <methods>
-                    <exclude name=".*"/>
-                </methods>
-            </class>
-            <class name="org.jboss.cdi.tck.tests.interceptors.definition.enterprise.jms.MessageDrivenBeanInterceptorInvocationTest">
-                <methods>
-                    <exclude name=".*"/>
-                </methods>
-            </class>
-            <!-- SFSB passivationCapable, see CDITCK-327 -->
-            <class name="org.jboss.cdi.tck.tests.context.passivating.enterprise.invalid.StatefulSessionBeanTest">
-                <methods>
-                    <exclude name="testDeployment"/>
-                </methods>
-            </class>
-            <class name="org.jboss.cdi.tck.tests.context.passivating.enterprise.invalid.StatefulSessionBeanXmlDescriptorTest">
-                <methods>
-                    <exclude name="testDeployment"/>
-                </methods>
-            </class>
-            <class name="org.jboss.cdi.tck.tests.context.passivating.enterprise.valid.StatefulSessionBeanXmlDescriptorTest">
-                <methods>
-                    <exclude name="testDeployment"/>
-                </methods>
-            </class>
-
-        </classes>
     </test>
-
 </suite>

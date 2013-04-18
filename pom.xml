@@ -2,8 +2,7 @@
     <parent>
         <artifactId>weld-core-parent</artifactId>
         <groupId>org.jboss.weld</groupId>
-        <!--<version>2.0.0.Beta1</version>-->
-        <version>2.0.0-SNAPSHOT</version>
+        <version>2.0.0.CR2</version>
         <relativePath>../../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -39,15 +38,15 @@
         </dependency>
 
         <dependency>
-            <groupId>org.jboss.weld</groupId>
-            <artifactId>weld-porting-package-tck11</artifactId>
+            <groupId>org.glassfish.cdi</groupId>
+            <artifactId>gf-cdi-porting-package-tck11</artifactId>
+            <version>1.0</version>
         </dependency>
 
         <dependency>
             <groupId>org.jboss.cdi.tck</groupId>
             <artifactId>cdi-tck-api</artifactId>
-            <version>${cdi.tck-1-1.version}</version>
-            <!--<version>1.1.0-SNAPSHOT</version>-->
+            <version>1.1.0.CR2</version>
         </dependency>
 
         <dependency>
@@ -59,8 +58,7 @@
         <dependency>
             <groupId>org.jboss.cdi.tck</groupId>
             <artifactId>cdi-tck-impl</artifactId>
-            <version>${cdi.tck-1-1.version}</version>
-            <!--<version>1.1.0-SNAPSHOT</version>-->
+            <version>1.1.0.CR2</version>
             <type>xml</type>
             <classifier>suite</classifier>
             <scope>test</scope>
@@ -69,8 +67,7 @@
         <dependency>
             <groupId>org.jboss.cdi.tck</groupId>
             <artifactId>cdi-tck-impl</artifactId>
-            <version>${cdi.tck-1-1.version}</version>
-            <!--<version>1.1.0-SNAPSHOT</version>-->
+            <version>1.1.0.CR2</version>
             <scope>test</scope>
         </dependency>
 
@@ -86,12 +83,6 @@
             <artifactId>htmlunit</artifactId>
             <version>2.9</version>
         </dependency>
-
-        <!--<dependency>-->
-            <!--<groupId>org.jboss.as</groupId>-->
-            <!--<artifactId>jboss-as-arquillian-common</artifactId>-->
-            <!--<scope>build</scope>-->
-        <!--</dependency>-->
 
     </dependencies>
 
@@ -143,6 +134,20 @@
                         </configuration>
                     </execution>
                     <execution>
+                        <id>copy-gfweld-dependencies</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <includeGroupIds>org.glassfish.cdi</includeGroupIds>
+                            <includeArtifactIds>gf-cdi-porting-package-tck11</includeArtifactIds>
+                            <stripVersion>true</stripVersion>
+                            <overWriteReleases>true</overWriteReleases>
+                            <outputDirectory>${project.build.directory}/dependency/lib</outputDirectory>
+                        </configuration>
+                    </execution>
+                    <execution>
                         <id>copy-el-dependencies</id>
                         <phase>process-resources</phase>
                         <goals>
@@ -187,6 +192,24 @@
                     <outputName>test-report</outputName>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <descriptors>
+                        <descriptor>src/main/assembly/assembly.xml</descriptor>
+                    </descriptors>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 
@@ -207,8 +230,7 @@
                 <dependency>
                     <groupId>org.jboss.arquillian.container</groupId>
                     <artifactId>arquillian-glassfish-managed-3.1</artifactId>
-                    <!--<version>1.0.0.CR3</version>-->
-                    <version>1.0.0.Final-SNAPSHOT</version>
+                    <version>1.0.0.CR3</version>
                     <scope>test</scope>
                 </dependency>
 
@@ -238,19 +260,10 @@
                             <suiteXmlFiles>
                                 <suiteXmlFile>src/test/resources/tck-tests.xml</suiteXmlFile>
                             </suiteXmlFiles>
-                            <properties>
-                                <property>
-                                  <name>usedefaultlisteners</name>
-                                  <value>false</value>
-                                </property>
-                            </properties>
                             <systemPropertyVariables>
                                 <arquillian.launch>weld</arquillian.launch>
                                 <org.jboss.cdi.tck.libraryDirectory>target/dependency/lib</org.jboss.cdi.tck.libraryDirectory>
                                 <org.jboss.cdi.tck.testDataSource>jdbc/__default</org.jboss.cdi.tck.testDataSource>
-                                <!--<org.jboss.cdi.tck.testJmsConnectionFactory>java:comp/DefaultJMSConnectionFactory</org.jboss.cdi.tck.testJmsConnectionFactory>-->
-                                <!--<org.jboss.cdi.tck.testJmsQueue>CdiCtsTestQueue</org.jboss.cdi.tck.testJmsQueue>-->
-                                <!--<org.jboss.cdi.tck.testJmsTopic>CdiCtsTestTopic</org.jboss.cdi.tck.testJmsTopic>-->
                             </systemPropertyVariables>
                         </configuration>
                     </plugin>
@@ -261,3 +274,4 @@
     </profiles>
 
 </project>
+

@@ -97,6 +97,8 @@
       <jms-service default-jms-host="default_JMS_host" type="EMBEDDED">
         <jms-host port="${JMS_PROVIDER_PORT}" host="localhost" name="default_JMS_host"></jms-host>
       </jms-service>
+      <cdi-service enable-implicit-cdi="true"></cdi-service>
+
       <ejb-container>
         <ejb-timer-service></ejb-timer-service>
       </ejb-container>

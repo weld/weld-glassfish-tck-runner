@@ -260,6 +260,12 @@
                             <suiteXmlFiles>
                                 <suiteXmlFile>src/test/resources/tck-tests.xml</suiteXmlFile>
                             </suiteXmlFiles>
+                            <properties>
+                                <property>
+                                    <name>usedefaultlisteners</name>
+                                    <value>false</value>
+                                </property>
+                            </properties>
                             <systemPropertyVariables>
                                 <arquillian.launch>weld</arquillian.launch>
                                 <org.jboss.cdi.tck.libraryDirectory>target/dependency/lib</org.jboss.cdi.tck.libraryDirectory>

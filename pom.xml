@@ -230,7 +230,7 @@
                 <dependency>
                     <groupId>org.jboss.arquillian.container</groupId>
                     <artifactId>arquillian-glassfish-managed-3.1</artifactId>
-                    <version>1.0.0.CR3</version>
+                    <version>1.0.0.CR4</version>
                     <scope>test</scope>
                 </dependency>
 

@@ -1,0 +1,56 @@
+Before running  cdi 1.1 tck you must do the following:
+- Install Glassfish
+- Modify src/test/glassfish-managed/arquillian.xml
+  - Set glassFishHome accordingly
+- Add shared library
+  - Copy shared library cdi-tck-ext-lib-1.1.0.Final.jar to $GF_HOME/domains/domain1/lib/applibs
+    This can be found in https://repository.jboss.org/nexus/content/repositories/public/org/jboss/cdi/tck/cdi-tck-ext-lib/1.1.0.Final
+- Make changes to domain.xml (see example domain.xml)
+  1 Define JMS resources:
+    - add the following to the "<resources>" element:
+      <admin-object-resource res-adapter="jmsra" res-type="javax.jms.Queue" jndi-name="queue_test">
+        <property name="Name" value="queue_test"></property>
+      </admin-object-resource>
+      <admin-object-resource res-adapter="jmsra" res-type="javax.jms.Topic" jndi-name="topic_test">
+        <property name="Name" value="topic_test"></property>
+      </admin-object-resource>
+    - add the following elements under <servers> -> <server name="server" config-ref="server-config"> :
+        <resource-ref ref="queue_test"></resource-ref>
+        <resource-ref ref="topic_test"></resource-ref>
+
+  2 enable implicit cdi.  Add the following element under <config name="server-config">
+      <cdi-service enable-implicit-cdi="true"></cdi-service>
+
+  3 Set environment variable cdiTckExcludeDummy.  Add the following jvm-options element under all instances of the <java-config ..." element:
+      <jvm-options>-DcdiTckExcludeDummy=true</jvm-options>
+      <jvm-options>-DcdiTckExcludeDummy=true</jvm-options>
+- Run Tests (see "Run Tests" below)
+
+To run with security manager:
+- Follow all steps above
+- Start GlassFish
+  - $GF_HOME/bin/asadmin start-domain domain1
+- Enable the security manager
+  - $GF_HOME/bin/asadmin create-jvm-options -Djava.security.manager
+- Stop GlassFish
+  - $GF_HOME/bin/asadmin stop-domain domain1
+- Add the following permissions to $GF_HOME/domains/domain1/config/server.policy:
+    grant {
+       permission java.lang.reflect.ReflectPermission "suppressAccessChecks";
+       permission org.osgi.framework.AdminPermission "*", "*";
+       permission java.lang.RuntimePermission "createClassLoader";
+       permission javax.security.auth.AuthPermission "modifyPrincipals";
+     };
+
+- Run Tests (see "Run Tests" below)
+
+Run Tests
+- Start database
+  - $GF_HOME/bin/asadamin start-database
+- Run TCK
+  - mvn -U clean test
+
+Notes
+- Do not start GlassFish.  The tck runner will start and stop GlassFish automatically.
+- If you run out of memory lower the maxTestClassesBeforeRestart property in src/test/glassfish-managed/arquillian.xml
+

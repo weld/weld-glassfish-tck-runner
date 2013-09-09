@@ -23,6 +23,9 @@ Before running  cdi 1.1 tck you must do the following:
 
   3 Set environment variable cdiTckExcludeDummy.  Add the following jvm-options element under all instances of the <java-config ..." element:
       <jvm-options>-DcdiTckExcludeDummy=true</jvm-options>
+  4 Enable assertions.  Under each <java-config> element add:
+      <jvm-options>-ea:org.jboss.cdi.tck...</jvm-options>
+
 - Run Tests (see "Run Tests" below)
 
 To run with security manager:

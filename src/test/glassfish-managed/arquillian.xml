@@ -5,12 +5,12 @@
                                 http://jboss.org/schema/arquillian/arquillian_1_0.xsd">
 
     <engine>
-        <property name="maxTestClassesBeforeRestart">80</property>
+        <property name="maxTestClassesBeforeRestart">100</property>
     </engine>
 
     <container qualifier="weld">
         <configuration>
-            <property name="glassFishHome">/glassfish/runtime/trunk/glassfish4</property>
+            <property name="glassFishHome">/opt/glassfish/glassfish4</property>
             <property name="adminHost">localhost</property>
             <property name="adminPort">4848</property>
             <property name="debug">true</property>

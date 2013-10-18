@@ -4,6 +4,7 @@
     configfailurepolicy="continue">
 
     <listeners>
+        <listener class-name="org.jboss.cdi.tck.impl.testng.ConfigurationLoggingListener"/>
         <listener
             class-name="org.jboss.cdi.tck.impl.testng.SingleTestClassMethodInterceptor" />
         <listener

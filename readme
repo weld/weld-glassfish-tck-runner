@@ -1,4 +1,4 @@
-Before running  cdi 1.1 tck you must do the following:
+Before running  cdi 1.2 tck you must do the following:
 - Install Glassfish
 - Modify src/test/glassfish-managed/arquillian.xml
   - Set glassFishHome accordingly
@@ -23,8 +23,22 @@ Before running  cdi 1.1 tck you must do the following:
 
   3 Set environment variable cdiTckExcludeDummy.  Add the following jvm-options element under all instances of the <java-config ..." element:
       <jvm-options>-DcdiTckExcludeDummy=true</jvm-options>
+
   4 Enable assertions.  Under each <java-config> element add:
       <jvm-options>-ea:org.jboss.cdi.tck...</jvm-options>
+
+  5 Activate default principal to role mapping.  Find the <security-service> element under the '<config name="server-config">' element and modify it to be:
+      <security-service activate-default-principal-to-role-mapping="true">
+
+- Define Security principals and roles.
+  There are 2 ways to do this.
+  1) Go into GlassFish Console and 
+     - Select server-config->Security->Realms->file
+     - Click on "Manage Users"
+     - Add a user with User Id: "alarm" and Group List: "student:alarm"
+     - Add a user with User Id: "student" and Group List: "student"
+     - Add a user with User Id: "printer" and Group List: "student:printer"
+  2) Replace glassfish/domains/domain1/config/keyfile with the example file src/keyfile
 
 - Run Tests (see "Run Tests" below)
 
@@ -50,9 +64,9 @@ Run Tests
 - Start database
   - $GF_HOME/bin/asadamin start-database
 - Run TCK
-  - mvn -U clean test
+  - mvn -U -P glassfish-managed clean test
 
 Notes
 - Do not start GlassFish.  The tck runner will start and stop GlassFish automatically.
 - If you run out of memory lower the maxTestClassesBeforeRestart property in src/test/glassfish-managed/arquillian.xml
-
+- The pom.xml file 

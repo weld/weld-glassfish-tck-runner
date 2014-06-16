@@ -2,7 +2,7 @@
     <parent>
         <artifactId>weld-core-parent</artifactId>
         <groupId>org.jboss.weld</groupId>
-        <version>2.2.0.Final</version>
+        <version>2.1.2.Final</version>
         <relativePath>../../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -65,7 +65,7 @@
         <dependency>
             <groupId>org.jboss.cdi.tck</groupId>
             <artifactId>cdi-tck-api</artifactId>
-            <version>${cdi.tck.version}</version>
+            <version>${cdi.tck-1-1.version}</version>
             <exclusions>
                 <exclusion>
                     <artifactId>el-api</artifactId>
@@ -77,7 +77,7 @@
         <dependency>
             <groupId>org.jboss.cdi.tck</groupId>
             <artifactId>cdi-tck-impl</artifactId>
-            <version>${cdi.tck.version}</version>
+            <version>${cdi.tck-1-1.version}</version>
             <type>xml</type>
             <classifier>suite</classifier>
             <scope>test</scope>
@@ -96,7 +96,7 @@
         <dependency>
             <groupId>org.jboss.cdi.tck</groupId>
             <artifactId>cdi-tck-impl</artifactId>
-            <version>${cdi.tck.version}</version>
+            <version>${cdi.tck-1-1.version}</version>
             <scope>test</scope>
             <exclusions>
                 <exclusion>
@@ -208,32 +208,6 @@
     </build>
 
     <profiles>
-        <profile>
-            <id>tck12</id>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-                <property>
-                    <name>!tck11</name>
-                </property>
-            </activation>
-            <properties>
-                <cdi.tck.version>${cdi.tck-1-2.version}</cdi.tck.version>
-            </properties>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <configuration>
-                            <suiteXmlFiles>
-                                <suiteXmlFile>src/test/tck12/tck-tests.xml</suiteXmlFile>
-                            </suiteXmlFiles>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-
         <profile>
             <id>glassfish-managed</id>
             <activation>

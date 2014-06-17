@@ -3,8 +3,8 @@ Before running  cdi 1.2 tck you must do the following:
 - Modify src/test/glassfish-managed/arquillian.xml
   - Set glassFishHome accordingly
 - Add shared library
-  - Copy shared library cdi-tck-ext-lib-1.1.0.Final.jar to $GF_HOME/domains/domain1/lib/applibs
-    This can be found in https://repository.jboss.org/nexus/content/repositories/public/org/jboss/cdi/tck/cdi-tck-ext-lib/1.1.0.Final
+  - Copy shared library cdi-tck-ext-lib-1.2.0.Final.jar to $GF_HOME/domains/domain1/lib/applibs
+    This can be found in https://repository.jboss.org/nexus/content/repositories/public/org/jboss/cdi/tck/cdi-tck-ext-lib/1.2.0.Final
 - Make changes to domain.xml (see example domain.xml)
   1 Define JMS resources:
     - add the following to the "<resources>" element:

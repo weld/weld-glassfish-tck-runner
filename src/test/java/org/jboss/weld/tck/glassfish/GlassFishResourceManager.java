@@ -39,9 +39,9 @@
  */
 package org.jboss.weld.tck.glassfish;
 
-import org.jboss.arquillian.container.glassfish.managed_3_1.GlassFishManagedContainerConfiguration;
-import org.jboss.arquillian.container.glassfish.managed_3_1.GlassFishServerControl;
-import org.jboss.arquillian.container.spi.Container;
+//import org.jboss.arquillian.container.glassfish.managed_3_1.GlassFishManagedContainerConfiguration;
+//import org.jboss.arquillian.container.glassfish.managed_3_1.GlassFishServerControl;
+//import org.jboss.arquillian.container.spi.Container;
 import org.jboss.arquillian.container.spi.event.StartContainer;
 import org.jboss.arquillian.core.api.annotation.Observes;
 import org.jboss.arquillian.core.spi.EventContext;

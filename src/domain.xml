@@ -462,31 +462,4 @@
     <secure-admin-principal dn="CN=localhost-instance,OU=GlassFish,O=Oracle Corporation,L=Santa Clara,ST=California,C=US"></secure-admin-principal>
   </secure-admin>
   <clusters></clusters>
-  <applications>
-    <application location="${com.sun.aas.instanceRootURI}/applications/Test/" name="Test" object-type="user">
-      <property name="archiveType" value="ear"></property>
-      <property name="isComposite" value="true"></property>
-      <property name="appLocation" value="${com.sun.aas.instanceRootURI}/applications/__internal/Test/55e0df4c-37fb-40f1-9497-530e545d12c5.ear"></property>
-      <property name="org.glassfish.ejb.container.application_unique_id" value="91836175570436096"></property>
-      <property name="defaultAppName" value="55e0df4c-37fb-40f1-9497-530e545d12c5"></property>
-      <engine sniffer="ear"></engine>
-      <module name="test-ejb.jar">
-        <engine sniffer="ejb"></engine>
-        <engine sniffer="security"></engine>
-        <engine sniffer="weld"></engine>
-      </module>
-      <module name="test1.war">
-        <engine sniffer="ejb"></engine>
-        <engine sniffer="security"></engine>
-        <engine sniffer="weld"></engine>
-        <engine sniffer="web"></engine>
-      </module>
-      <module name="test2.war">
-        <engine sniffer="ejb"></engine>
-        <engine sniffer="security"></engine>
-        <engine sniffer="weld"></engine>
-        <engine sniffer="web"></engine>
-      </module>
-    </application>
-  </applications>
 </domain>

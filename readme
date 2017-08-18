@@ -1,10 +1,10 @@
-Before running  cdi 1.2 tck you must do the following:
+Before running  cdi 2.0 tck you must do the following:
 - Install Glassfish
 - Modify src/test/glassfish-managed/arquillian.xml
   - Set glassFishHome accordingly
 - Add shared library
-  - Copy shared library cdi-tck-ext-lib-1.2.0.Final.jar to $GF_HOME/domains/domain1/lib/applibs
-    This can be found in https://repository.jboss.org/nexus/content/repositories/public/org/jboss/cdi/tck/cdi-tck-ext-lib/1.2.0.Final
+  - Copy shared library cdi-tck-ext-lib-2.0.0.Final.jar to $GF_HOME/domains/domain1/lib/applibs
+    This can be found in https://repository.jboss.org/nexus/content/repositories/public/org/jboss/cdi/tck/cdi-tck-ext-lib/2.0.0.Final
 - Make changes to domain.xml (see example domain.xml)
   1 Define JMS resources:
     - add the following to the "<resources>" element:
@@ -37,7 +37,7 @@ Before running  cdi 1.2 tck you must do the following:
      - Click on "Manage Users"
      - Add a user with User Id: "alarm" and Group List: "student:alarm"
      - Add a user with User Id: "student" and Group List: "student"
-     - Add a user with User Id: "printer" and Group List: "student:printer"
+     - Add a user with User Id: "printer" and Group List: "printer"
   2) Replace glassfish/domains/domain1/config/keyfile with the example file src/keyfile
 
 - Run Tests (see "Run Tests" below)

@@ -10,7 +10,7 @@
 
     <container qualifier="weld">
         <configuration>
-            <property name="glassFishHome">/glassfish/runtime/trunk/glassfish4</property>
+            <property name="glassFishHome"><!--Path to GlassFish Installation--></property>
             <property name="adminHost">localhost</property>
             <property name="adminPort">4848</property>
             <property name="debug">true</property>

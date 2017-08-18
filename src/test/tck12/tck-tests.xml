@@ -1,12 +1,13 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<!-- CDI TCK TestNG configuration for Weld -->
-<suite name="Weld / JBoss AS run of CDI TCK" verbose="0" configfailurepolicy="continue">
+<suite name="CDI TCK" verbose="0" configfailurepolicy="continue" useDefaultListeners="false">
 
     <listeners>
+        <!-- Required - avoid randomly mixed test method execution -->
+        <listener class-name="org.jboss.cdi.tck.impl.testng.SingleTestClassMethodInterceptor" />
+        <!-- Optional - intended for debug purpose only -->
         <listener class-name="org.jboss.cdi.tck.impl.testng.ConfigurationLoggingListener"/>
-        <listener class-name="org.jboss.cdi.tck.impl.testng.SingleTestClassMethodInterceptor"/>
         <listener class-name="org.jboss.cdi.tck.impl.testng.ProgressLoggingTestListener"/>
-        <!-- The default JUnit XML reporter is disabled -->
+        <!-- Optional - it's recommended to disable the default JUnit XML reporter -->
         <listener class-name="org.testng.reporters.SuiteHTMLReporter"/>
         <listener class-name="org.testng.reporters.FailedReporter"/>
         <listener class-name="org.testng.reporters.XMLReporter"/>
@@ -23,50 +24,29 @@
 
         <classes>
 
-            <!-- Issues in the TCK -->
-
-            <!-- Issues in the spec -->
-            <!-- CDI-437 -->
-            <class name="org.jboss.cdi.tck.tests.lookup.byname.ambiguous.broken.AmbiguousELNamesTest">
+            <!-- CDITCK-587 -->
+            <class name="org.jboss.cdi.tck.tests.event.observer.transactional.roolback.TransactionalObserverRollbackTest">
                 <methods>
                     <exclude name=".*"/>
                 </methods>
             </class>
 
-            <!-- https://issues.jboss.org/browse/CDITCK-418 -->
-            <!-- https://issues.jboss.org/browse/CDITCK-420.-->
-            <class name="org.jboss.cdi.tck.interceptors.tests.contract.interceptorLifeCycle.environment.jndi.ejb.InterceptorEnvironmentJNDISessionBeanTest">
+            <!-- CDITCK-597 -->
+            <class name="org.jboss.cdi.tck.tests.deployment.packaging.ejb.EJBJarDeploymentTest">
                 <methods>
-                    <exclude name="testInterceptorEnvironment"/>
-                </methods>
-            </class>
-            <class name="org.jboss.cdi.tck.tests.lookup.modules.interceptors.InterceptorModularityTest">
-                <methods>
-                    <exclude name="testInterceptorEnvironment"/>
+                    <exclude name=".*"/>
                 </methods>
             </class>
 
-            <!-- This has been fixed in 1.2.1.  Exclude it for 1.2.0. -->
-            <class name="org.jboss.cdi.tck.tests.implementation.enterprise.definition.remote.RemoteInterfaceNotInAPITypesTest">
-            <methods>
-            <exclude name="testRemoteInterfacesAreNotInAPITypes"/>
-            </methods>
-            </class>
-
-
-            <!-- Issues in Weld (the RI) -->
-
-            <!-- Issues in GlassFish  -->
-            <!-- https://java.net/jira/browse/GLASSFISH-21079 -->
-            <class name="org.jboss.cdi.tck.tests.event.observer.resolve.enterprise.ResolveEnterpriseEventObserverTest">
+            <!-- CDITCK-598 -->
+            <class name="org.jboss.cdi.tck.tests.event.observer.context.enterprise.staticMethod.SessionBeanStaticObserverMethodInvocationContextTest">
                 <methods>
-                    <exclude name="testObserverMethodOnEnterpriseBeanIsBusinessMethodOrStatic"/>
+                    <exclude name=".*"/>
                 </methods>
             </class>
-
-
 
         </classes>
+
     </test>
 
 </suite>

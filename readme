@@ -56,7 +56,11 @@ To run with security manager:
        permission org.osgi.framework.AdminPermission "*", "*";
        permission java.lang.RuntimePermission "createClassLoader";
        permission javax.security.auth.AuthPermission "modifyPrincipals";
+       permission java.io.FilePermission       "<<ALL FILES>>", "delete";
      };
+     grant  codeBase "file:${com.sun.aas.instanceRoot}/applications/-"{
+      permission java.security.AllPermission;
+    };
 
 - Run Tests (see "Run Tests" below)
 

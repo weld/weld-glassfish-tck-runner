@@ -4,7 +4,7 @@ Before running  cdi 2.0 tck you must do the following:
   - Set glassFishHome accordingly
 - Add shared library
   - Copy shared library cdi-tck-ext-lib-2.0.0.Final.jar to $GF_HOME/domains/domain1/lib/applibs
-    This can be found in https://repository.jboss.org/nexus/content/repositories/public/org/jboss/cdi/tck/cdi-tck-ext-lib/2.0.0.Final
+    This can be found in http://central.maven.org/maven2/org/jboss/cdi/tck/cdi-tck-ext-lib/2.0.0.Final/
 - Make changes to domain.xml (see example domain.xml)
   1 Define JMS resources:
     - add the following to the "<resources>" element:

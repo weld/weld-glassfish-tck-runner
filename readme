@@ -1,3 +1,7 @@
+=====================================
+NOTE: This repository is archived!
+=====================================
+
 Before running  cdi 2.0 tck you must do the following:
 - Install Glassfish
 - Modify src/test/glassfish-managed/arquillian.xml
